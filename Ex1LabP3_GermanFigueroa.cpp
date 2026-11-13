@@ -7,6 +7,7 @@ using namespace std;
 
 void ejecutarJuego();
 void mapasinLinterna();
+void mapaconLinterna();
 
 void mostrarMenuPrincipal() {
     setlocale(LC_ALL, "spanish");
@@ -131,9 +132,89 @@ void ejecutarJuego() {
                 cin.clear();
                 cin.ignore(1000, '\n');
                 opciónAcción;
+            }
+            int reduccionCaja = 5 + (rand() % 5);
+            cajaMusical -= reduccionCaja;
+            if (cajaMusical < 0) cajaMusical = 0;
+
+            if (opciónAcción == 1) {
+                if (freddy.getX() >= 5) { pasoFreddy = 0; freddy.setX(rutaFreddyX[0]); freddy.setY(rutaFreddyY[0]); }
+                if (chica.getX() >= 5) { pasoChica = 0; chica.setX(rutaChicaX[0]); chica.setY(rutaChicaY[0]); }
+                if (bonnie.getX() >= 5) { pasoBonnie = 0; bonnie.setX(rutaBonnieX[0]); bonnie.setY(rutaBonnieY[0]); }
+
+            }else if (opciónAcción == 2){
+                pasoFoxy = 0;
+                foxy.setX(rutaFoxyX[0]);
+                foxy.setY(rutaFoxyY[0]);
+
+                system("cls");
+                cout << "NIGHT " << noche << " [USANDO LINTERNA]" << endl;
+                mapaConLinterna(mapa);
+                cout << "Caja Musical: " << cajaMusical << endl;
+                system("pause");
+
+            }else if (opciónAcción == 3) {
+                cajaMusical += 10;
+                if (cajaMusical > 100) cajaMusical = 100;
+            }
+            if (cajaMusical <= 0) {
+                vivo = false;
+                causaMuerte = puppet.getNombre();
+                mensajeMuerteAnimatronico = puppet.getMensaje();
+                break;
+            }
+            int rndFreddy = rand() % 21;
+            if (rndFreddy < freddy.getIA() && pasoFreddy < 4) {
+                pasoFreddy++;
+                freddy.setX(rutaFreddyX[pasoFreddy]);
+                freddy.setY(rutaFreddyY[pasoFreddy]);
+            }
+            
+            int rndChica = rand() % 21;
+            if (rndChica < chica.getIA() && pasoChica < 6) {
+                pasoChica++;
+                chica.setX(rutaChicaX[pasoChica]);
+                chica.setY(rutaChicaY[pasoChica]);
+            }
+            int rndBonnie = rand() % 21;
+            if (rndBonnie < bonnie.getIA() && pasoBonnie < 6) {
+                pasoBonnie++;
+                bonnie.setX(rutaBonnieX[pasoBonnie]);
+                bonnie.setY(rutaBonnieY[pasoBonnie]);
+            }
+            int rndFoxy = rand() % 21;
+            if (rndFoxy < foxy.getIA() && pasoFoxy < 2) {
+                pasoFoxy++;
+                foxy.setX(rutaFoxyX[pasoFoxy]);
+                foxy.setY(rutaFoxyY[pasoFoxy]);
+            }
+            if (freddy.getX() == 8 && freddy.getY() == 3) {
+                vivo = false; causaMuerte = freddy.getNombre(); mensajeMuerteAnimatronico = freddy.getMensaje();
+            }
+            else if (chica.getX() == 8 && chica.getY() == 3) {
+                vivo = false; causaMuerte = chica.getNombre(); mensajeMuerteAnimatronico = chica.getMensaje();
+            }
+            else if (bonnie.getX() == 8 && bonnie.getY() == 3) {
+                vivo = false; causaMuerte = bonnie.getNombre(); mensajeMuerteAnimatronico = bonnie.getMensaje();
+            }
+            else if (foxy.getX() == 8 && foxy.getY() == 3) {
+                vivo = false; causaMuerte = foxy.getNombre(); mensajeMuerteAnimatronico = foxy.getMensaje();
+            }
         }
 
-    } while (noche != 0);
+        system("cls");
+        if (!vivo) {
+            cout << "Te ha matado " << causaMuerte << endl;
+            cout << mensajeMuerteAnimatronico << endl;
+        }
+        else {
+            cout << "¡Has sobrevivido a la Noche " << noche << "!" << endl;
+        }
+        system("pause");
+
+
+    }while (noche != 0);
+ 
 
 }
 void mapaSinLinterna(char mapa[9][7]) {
@@ -251,7 +332,6 @@ void mapaConLinterna(char mapa[9][7]) {
             {
                 cout << "[" << mapa[i][j] << " ";
             }
-            PERIODO 2 / SEMESTRE 2 / AÑO 2026 11
             else if ((i == 2 && j == 4) || (i == 3 && j == 4))
             {
                 cout << " " << mapa[i][j] << "]";
