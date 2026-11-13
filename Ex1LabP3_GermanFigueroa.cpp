@@ -5,6 +5,9 @@
 
 using namespace std;
 
+void ejecutarJuego();
+void mapasinLinterna();
+
 void mostrarMenuPrincipal() {
     setlocale(LC_ALL, "spanish");
     int opción;
@@ -45,10 +48,11 @@ void mostrarMenuPrincipal() {
 }
 void ejecutarJuego() {
     int noche = 0;
+    int opciónAcción;
     do {
         system("cls");
         cout << " We´re really quite surprised we get to see you this night. :D " << endl;
-        cout << " Can´t wait to meet youuuuu " << endl;
+        cout << " Can´t wait to meet yooouuuuu " << endl;
         cout << " 0. Salir " << endl;
         cout << " Noche 1 " << endl;
         cout << " Noche 2 " << endl;
@@ -110,12 +114,223 @@ void ejecutarJuego() {
             mapa[freddy.getX()][freddy.getY()] = 'F';
             mapa[chica.getX()][chica.getY()] = 'C';
             mapa[bonnie.getX()][bonnie.getY()] = 'B';
-            mapa[foxy.getX()][foxy.getY()] = 'A';
+            mapa[foxy.getX()][foxy.getY()] = 'W';
             mapa[puppet.getX()][puppet.getY()] = 'P';
+
+            mapasinLinterna(mapa);
+
+            cout << " Caja Musical: " << cajaMusical << endl;
+            cout << " ¿ Ahora que hago ? " << endl;
+            cout << " 1. Máscara " << endl;
+            cout << " 2. Linterna " << endl;
+            cout << " 3. Caja Musical " << endl;
+            cout << " Ingrese una opción: ";
+            cin >> opciónAcción;
+
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                opciónAcción;
         }
 
     } while (noche != 0);
 
+}
+void mapaSinLinterna(char mapa[9][7]) {
+    for (size_t i = 0; i < 9; i++)
+    {
+        for (size_t j = 0; j < 7; j++)
+        {
+            if ((i == 0 && j == 0) || (i == 0 && j == 1) || (i == 1 && j == 0) || (i == 1 && j == 1) || (i == 1 && j == 6))
+            {
+                cout << "[" << mapa[i][j] << "]";
+            }
+            else if ((i == 3 && j == 0) || (i == 5 && j == 0) || (i == 8 && j == 0))
+            {
+                cout << "[" << mapa[i][j] << "]";
+            }
+            else if ((i == 3 && j == 6) || (i == 5 && j == 6) || (i == 8 && j == 6))
+            {
+                cout << "[" << mapa[i][j] << "]";
+            }
+            else if ((i == 6 && j == 6) || (i == 7 && j == 6) || (i == 8 && j == 6) || (i == 6 && j == 0) || (i == 7 && j == 0))
+            {
+                cout << "|" << mapa[i][j] << "|";
+            }
+            else if ((i == 1 && j == 2) || (i == 2 && j == 2) || (i == 3 && j == 2) || (i == 4 && j == 2))
+            {
+                cout << "[" << mapa[i][j] << " ";
+            }
+            else if ((i == 2 && j == 4) || (i == 3 && j == 4) || (i == 4 && j == 4))
+            {
+                cout << " " << mapa[i][j] << "]";
+            }
+            else if (i == 5 && j == 2)
+            {
+                if (mapa[i][j] == ' ')
+                {
+                    cout << "[_ ";
+                }
+                else {
+                    cout << "[" << mapa[i][j] << " ";
+                }
+            }
+            else if (i == 5 && j == 4)
+            {
+                if (mapa[i][j] == ' ')
+                {
+                    cout << " _]";
+                }
+                else {
+                    cout << " " << mapa[i][j] << "]";
+                }
+            }
+            else if ((i == 3 && j == 1) || (i == 3 && j == 5))
+            {
+                cout << "===";
+            }
+            else if ((i == 5 && j == 1) || (i == 5 && j == 5))
+            {
+                cout << "===";
+            }
+            PERIODO 2 / SEMESTRE 2 / AÑO 2026 10
+            else if ((i == 8 && j == 1) || (i == 8 && j == 5))
+            {
+                cout << "===";
+            }
+            else if (i == 8 && j == 2)
+            {
+                cout << "[" << mapa[i][j] << " ";
+            }
+            else if (i == 8 && j == 4)
+            {
+                cout << " " << mapa[i][j] << "]";
+            }
+            else if (i == 8 && j == 3)
+            {
+                cout << " " << mapa[i][j] << " ";
+            }
+            else if (i == 0 && j <= 5 && j >= 2)
+            {
+                cout << "___";
+            }
+            else if (i == 1 && j == 5)
+            {
+                cout << "__]";
+            }
+            else {
+                cout << " " << mapa[i][j] << " ";
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+void mapaConLinterna(char mapa[9][7]) {
+    for (size_t i = 0; i < 9; i++)
+    {
+        for (size_t j = 0; j < 7; j++)
+        {
+            if ((i == 0 && j == 0) || (i == 0 && j == 1) || (i == 1 && j == 0) || (i == 1 && j == 1) || (i == 1 && j == 6))
+            {
+                cout << "[" << mapa[i][j] << "]";
+            }
+            else if ((i == 3 && j == 0) || (i == 5 && j == 0) || (i == 8 && j == 0))
+            {
+                cout << "[" << mapa[i][j] << "]";
+            }
+            else if ((i == 3 && j == 6) || (i == 5 && j == 6) || (i == 8 && j == 6))
+            {
+                cout << "[" << mapa[i][j] << "]";
+            }
+            else if ((i == 6 && j == 6) || (i == 7 && j == 6) || (i == 8 && j == 6) || (i == 6 && j == 0) || (i == 7 && j == 0))
+            {
+                cout << "|" << mapa[i][j] << "|";
+            }
+            else if ((i == 1 && j == 2) || (i == 2 && j == 2) || (i == 3 && j == 2))
+            {
+                cout << "[" << mapa[i][j] << " ";
+            }
+            PERIODO 2 / SEMESTRE 2 / AÑO 2026 11
+            else if ((i == 2 && j == 4) || (i == 3 && j == 4))
+            {
+                cout << " " << mapa[i][j] << "]";
+            }
+            else if (i == 5 && j == 2)
+            {
+                if (mapa[i][j] == ' ')
+                {
+                    cout << "[_\\";
+                }
+                else {
+                    cout << "[" << mapa[i][j] << "\\";
+                }
+            }
+            else if (i == 5 && j == 4)
+            {
+                if (mapa[i][j] == ' ')
+                {
+                    cout << "/_]";
+                }
+                else {
+                    cout << "/" << mapa[i][j] << "]";
+                }
+            }
+            else if ((i == 3 && j == 1) || (i == 3 && j == 5))
+            {
+                cout << "===";
+            }
+            else if ((i == 5 && j == 1) || (i == 5 && j == 5))
+            {
+                cout << "===";
+            }
+            else if ((i == 8 && j == 1) || (i == 8 && j == 5))
+            {
+                cout << "===";
+            }
+            else if (i == 8 && j == 2)
+            {
+                cout << "[" << mapa[i][j] << " ";
+            }
+            else if (i == 8 && j == 4)
+            {
+                cout << " " << mapa[i][j] << "]";
+            }
+            else if (i == 8 && j == 3)
+            {
+                cout << " " << mapa[i][j] << " ";
+            }
+            else if (i == 0 && j <= 5 && j >= 2)
+            {
+                cout << "___";
+            }
+            else if (i == 1 && j == 5)
+            {
+                cout << "__]";
+            }
+            else if (i == 7 && j == 3)
+            {
+               cout << " V ";
+            }
+            else if (i == 6 && j == 3)
+            {
+                cout << "\\" << mapa[i][j] << "/";
+            }
+            else if ((i == 4 && j == 2))
+            {
+                cout << "[\\ ";
+            }
+            else if ((i == 4 && j == 4))
+            {
+                cout << " /]";
+            }
+            else {
+                cout << " " << mapa[i][j] << " ";
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;
 }
 int main() {
     srand(time(0));
