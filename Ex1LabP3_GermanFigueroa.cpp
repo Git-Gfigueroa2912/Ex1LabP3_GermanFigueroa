@@ -3,8 +3,6 @@
 #include <ctime>
 #include <locale>
 
-
-
 using namespace std;
 
 void mostrarMenuPrincipal() {
@@ -66,7 +64,55 @@ void ejecutarJuego() {
             system("pause");
             continue;
         }
+        int iaFreddy = noche * 2;
+        int iaChica = noche * 2;
+        int iaBonnie = noche * 2;
+        int iaFoxy = noche * 2 + 1;
+        int iaPuppet = 18;
 
+        Animatronic freddy("Freddy", iaFreddy, 0, 0, " HUR HUR HUR HUR HUR HUR HUR HUR HUR HUR ");
+        Animatronic chica("Chica", iaChica, 1, 0, " ¡Te ha atrapado Chica! ");
+        Animatronic bonnie("Bonnie", iaBonnie, 0, 1, " ¡Te ha atrapado Bonnie! ");
+        Animatronic foxy("Foxy", iaFoxy, 1, 1, " ¡Te ha atrapado Foxy! ");
+        Animatronic puppet("Puppet", iaPuppet, 1, 6, " ¡La caja musical llego a 0, Puppet te ha atacado! ");
+
+        int rutaFoxyX[] = { 1, 4, 8 };
+        int rutaFoxyY[] = { 1, 3, 3 };
+        int pasoFoxy = 0;
+
+        int rutaFreddyX[] = { 0, 1, 3, 5, 8 };
+        int rutaFreddyY[] = { 0, 3, 3, 3, 3 };
+        int pasoFreddy = 0;
+
+        int rutaChicaX[] = { 1, 1, 3, 5, 5, 8 };
+        int rutaChicaY[] = { 0, 4, 4, 4, 6, 6, 3 };
+        int pasoChica = 0;
+
+        int rutaBonnieX[] = { 0, 1, 3, 5, 5, 8, 8 };
+        int rutaBonnieY[] = { 1, 2, 2, 2, 0, 0, 3 };
+        int pasoBonnie = 0;
+
+        int cajaMusical = 100;
+        bool vivo = true;
+        string causaMuerte = "";
+        string mensajeMuerteAnimatronico = "";
+
+        while (vivo && cajaMusical > 0) {
+            system(" cls ");
+            cout << " NIGHT " << noche << endl;
+
+            char mapa[9][7];
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 7; j++) {
+                    mapa[i][j] = ' ';
+                }
+            }
+            mapa[freddy.getX()][freddy.getY()] = 'F';
+            mapa[chica.getX()][chica.getY()] = 'C';
+            mapa[bonnie.getX()][bonnie.getY()] = 'B';
+            mapa[foxy.getX()][foxy.getY()] = 'A';
+            mapa[puppet.getX()][puppet.getY()] = 'P';
+        }
 
     } while (noche != 0);
 
