@@ -45,6 +45,32 @@ void mostrarMenuPrincipal() {
 
     } while (opción != 2);
 }
+void ejecutarJuego() {
+    int noche = 0;
+    do {
+        system("cls");
+        cout << " We´re really quite surprised we get to see you this night. :D " << endl;
+        cout << " Can´t wait to meet youuuuu " << endl;
+        cout << " 0. Salir " << endl;
+        cout << " Noche 1 " << endl;
+        cout << " Noche 2 " << endl;
+        cout << " Noche 3 " << endl;
+        cout << " Noche 4 " << endl;
+        cout << " Noche 5 " << endl;
+        cout << " Seleccione una noche (0-5): ";
+        cin >> noche;
+
+        if (noche == 0) return;
+        if (noche < 1 || noche > 5) {
+            cout << " La noche es invalida " << endl;
+            system("pause");
+            continue;
+        }
+
+
+    } while (noche != 0);
+
+}
 int main() {
     srand(time(0));
     mostrarMenuPrincipal();
